@@ -14,16 +14,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import MessageComponent from './MessageComponent'
 import ToolbarMessagesComponent from './ToolbarMessagesComponent'
 
 export default {
   name: 'MessagesComponent',
   components: { MessageComponent, ToolbarMessagesComponent },
-  computed: mapGetters({
-    messages: 'getAllMessages'
-  })  
+  computed: {
+    message () {
+      return this.$store.getters.getAllMessages
+    }
+  },
+  created () {
+    this.$store.dispatch('removeCurrent')
+  }
 }
 </script>
 
