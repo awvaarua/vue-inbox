@@ -1,7 +1,8 @@
 import messagesClient from '../../api/MessagesClient'
 // initial state
 const state = {
-  messages: []
+  messages: [],
+  current: null
 }
 
 // getters
@@ -9,7 +10,8 @@ const getters = {
   getAllMessages: state => state.messages,
   getMessage: (state) => (id) => {
     return state.messages.find(message => message.Id === id)
-  }
+  },
+  getCurrent: state => state.current
 }
 
 // actions
@@ -23,6 +25,9 @@ const actions = {
 
 // mutations
 const mutations = {
+  setCurrent (state, { id }) {
+    state.current = state.messages.find(message => message.Id === id)
+  },
   setMessages (state, { messages }) {
     state.messages = messages
   },
