@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import LabelsComponent from './LabelsComponent'
 
 export default {

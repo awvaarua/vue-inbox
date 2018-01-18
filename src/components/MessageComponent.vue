@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list-tile avatar ripple @click="">
+    <v-list-tile avatar ripple @click="() => {}">
       <v-list-tile-action>
         <v-checkbox v-model="message.selected" @change="onSelecteUnselect"></v-checkbox>
       </v-list-tile-action>
@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import { mapActions, mapGetters  } from 'vuex'
-
 export default {
   name: 'MessageComponent',
   props: {
