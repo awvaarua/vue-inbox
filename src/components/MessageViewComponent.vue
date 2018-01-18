@@ -1,5 +1,8 @@
 <template>
-  <v-container>
+  <v-container v-if="!message">
+    <h4>Message not found</h4>
+  </v-container>
+  <v-container v-else>
     <v-layout row>
       <v-flex xs12 sm12 md12>
         <v-card>
