@@ -28,14 +28,6 @@ export default {
     message () {
       return this.$store.getters.getCurrent
     }
-    // ,snippet: {
-    //   get () {
-    //     return this.$store.getters.getMessage(this.$route.params.id).Snippet
-    //   },
-    //   set (value) {
-    //     this.$store.commit('updateSnippet', { message: this.message, snippet: value })
-    //   }
-    // }
   },
   created () {
     this.$store.commit('setCurrent', { id: this.$route.params.id })

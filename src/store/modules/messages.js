@@ -2,6 +2,7 @@ import messagesClient from '../../api/MessagesClient'
 // initial state
 const state = {
   messages: [],
+  allSelected: false,
   current: null
 }
 
@@ -11,6 +12,7 @@ const getters = {
   getMessage: (state) => (id) => {
     return state.messages.find(message => message.Id === id)
   },
+  getAllSelected: state => state.allSelected,
   getCurrent: state => state.current
 }
 
@@ -47,6 +49,9 @@ const mutations = {
   unsetLabel (state, { message, label }) {
     var index = message.LabelList.indexOf(label)
     if (index > -1) message.LabelList.splice(index, 1)
+  },
+  setAllSelected (state, { value }) {
+    state.allSelected = value
   }
 }
 
