@@ -21,7 +21,7 @@ export default {
   name: 'MessagesComponent',
   components: { MessageComponent, ToolbarMessagesComponent },
   computed: {
-    message () {
+    messages () {
       return this.$store.getters.getAllMessages
     }
   },
