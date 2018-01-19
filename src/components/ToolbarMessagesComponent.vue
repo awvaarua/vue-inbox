@@ -19,15 +19,17 @@ import LabelsComponent from './LabelsComponent'
 export default {
   name: 'ToolbarMessagesComponent',
   components: { LabelsComponent },
-  props: {
-    messages: {
-      type: Array,
-      required: true
-    }
-  },
-  data () {
-    return {
-      allSelected: false
+  computed: {
+    allSelected: {
+      get () {
+        return this.$store.getters.getAllSelected
+      },
+      set (value) {
+        this.$store.commit('setAllSelected', { value })
+      }
+    },
+    messages () {
+      return this.$store.getters.getAllMessages
     }
   },
   methods: {

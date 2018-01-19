@@ -19,5 +19,6 @@ new Vue({
   render: h => h(App),
   created () {
     this.$store.dispatch('getAllMessages')
+    this.$store.dispatch('getLabels')
   }
 })

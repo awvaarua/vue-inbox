@@ -1,8 +1,5 @@
 <template>
-  <v-container v-if="!message">
-    <h4>Message not found</h4>
-  </v-container>
-  <v-container v-else>
+  <v-container v-if="message">
     <v-layout row>
       <v-flex xs12 sm12 md12>
         <v-card>
@@ -15,27 +12,28 @@
             </v-list-tile>
           </v-list>
         </v-card>
-        <div v-html="message.Body">></div>
+        <labels-component :messageLabels="message.LabelList" :message="message"></labels-component>
+        <!-- <div v-html="message.Body"></div> -->
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import LabelsComponent from './LabelsComponent'
+
 export default {
   name: 'MessageViewComponent',
+  components: { LabelsComponent },
   computed: {
     message () {
       return this.$store.getters.getCurrent
     }
-    // ,snippet: {
-    //   get () {
-    //     return this.$store.getters.getMessage(this.$route.params.id).Snippet
-    //   },
-    //   set (value) {
-    //     this.$store.commit('updateSnippet', { message: this.message, snippet: value })
-    //   }
-    // }
+  },
+  beforeCreate () {
+    if (!this.$store.getters.getCurrent) {
+      this.$store.dispatch('getMessage', { id: this.$route.params.id })
+    }
   },
   created () {
     this.$store.commit('setCurrent', { id: this.$route.params.id })
