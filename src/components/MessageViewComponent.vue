@@ -15,15 +15,19 @@
             </v-list-tile>
           </v-list>
         </v-card>
-        <div v-html="message.Body">></div>
+        <labels-component :messageLabels="message.LabelList" :message="message"></labels-component>
+        <div v-html="message.Body"></div>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import LabelsComponent from './LabelsComponent'
+
 export default {
   name: 'MessageViewComponent',
+  components: { LabelsComponent },
   computed: {
     message () {
       return this.$store.getters.getMessage(this.$route.params.id)

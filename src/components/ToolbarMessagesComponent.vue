@@ -1,7 +1,7 @@
 <template>
   <v-list-tile>
     <v-list-tile-action>
-      <v-checkbox v-model="allSelected" @change="selectUnselectAll"></v-checkbox>
+      <v-checkbox v-model="allSelected"></v-checkbox>
     </v-list-tile-action>
     <v-list-tile-content>
       <div class="text-xs-center" v-if="atLeastOneSelected()">
@@ -25,7 +25,7 @@ export default {
         return this.$store.getters.getAllSelected
       },
       set (value) {
-        this.$store.commit('setAllSelected', { value })
+        this.$store.dispatch('selectUnselectAll', { value })
       }
     },
     messages () {
@@ -36,11 +36,6 @@ export default {
     deleteSelected () {
       this.messages.forEach(message => {
         if (message.selected) console.log(message.Id)
-      })
-    },
-    selectUnselectAll (currentValue) {
-      this.messages.forEach(message => {
-        this.$store.commit('setSelectedUnselected', { message: message, value: currentValue })
       })
     },
     atLeastOneSelected () {

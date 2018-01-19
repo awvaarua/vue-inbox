@@ -11,13 +11,14 @@ Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
+/* eslint-disable */
+window.VueApp = new Vue({
   el: '#app',
   store,
   router,
   render: h => h(App),
   created () {
     this.$store.dispatch('getAllMessages')
+    this.$store.dispatch('getLabels')
   }
 })
