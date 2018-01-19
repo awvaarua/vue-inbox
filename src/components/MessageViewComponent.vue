@@ -26,11 +26,8 @@ export default {
   name: 'MessageViewComponent',
   computed: {
     message () {
-      return this.$store.getters.getCurrent
+      return this.$store.getters.getMessage(this.$route.params.id)
     }
-  },
-  created () {
-    this.$store.commit('setCurrent', { id: this.$route.params.id })
   },
   methods: {
     isImportant () {

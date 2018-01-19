@@ -26,7 +26,7 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('removeCurrent')
+    // this.$store.dispatch('removeCurrent')
   }
 }
 </script>

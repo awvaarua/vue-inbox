@@ -2,8 +2,7 @@ import messagesClient from '../../api/MessagesClient'
 // initial state
 const state = {
   messages: [],
-  allSelected: false,
-  current: null
+  allSelected: false
 }
 
 // getters
@@ -12,8 +11,7 @@ const getters = {
   getMessage: (state) => (id) => {
     return state.messages.find(message => message.Id === id)
   },
-  getAllSelected: state => state.allSelected,
-  getCurrent: state => state.current
+  getAllSelected: state => state.allSelected
 }
 
 // actions
@@ -22,18 +20,11 @@ const actions = {
     let messages = await messagesClient.getMessages()
     messages.forEach(message => { message.selected = false }) // Add custom property for our app
     commit('setMessages', { messages })
-  },
-  removeCurrent ({ commit }) {
-    commit('setCurrent', { id: null })
   }
 }
 
 // mutations
 const mutations = {
-  setCurrent (state, { id }) {
-    if (!id) state.current = null
-    else state.current = state.messages.find(message => message.Id === id)
-  },
   setMessages (state, { messages }) {
     state.messages = messages
   },
