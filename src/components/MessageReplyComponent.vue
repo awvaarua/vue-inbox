@@ -12,14 +12,25 @@ export default {
   components: { tinymce },
   data () {
     return {
-      bodyCopy: this.body.repeat(1),
+      bodyCopy: `
+                <div>
+                  <br>
+                  <br>
+                  El 16 de enero de 2018, 17:13, Amazon.es 
+                  <span dir="ltr">&lt;<a href="mailto:fuedoip@uib.cat" target="_blank">fuedoip@uib.cat</a>&gt;</span>
+                  <blockquote style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+                    ${this.body.repeat(1)}
+                  </blockquote>
+                </div>
+                `,
       plugins: ['fullscreen'],
       toolbar1: 'formatselect | bold italic  strikethrough  forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | fullscreen',
       options: {
         paste_data_images: true,
         images_upload_handler: function (blobInfo, success, failure) {
           success(`data:${blobInfo.blob().type};base64,${blobInfo.base64()}`)
-        }
+        },
+        content_style: 'body {  background: #ffffff !important; }'
       }
     }
   },
@@ -32,8 +43,5 @@ export default {
 }
 </script>
 
-<style scoped>
-span .mce-branding {
-  visibility: hidden !important;
-}
+<style>
 </style>
