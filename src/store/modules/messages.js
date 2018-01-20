@@ -1,4 +1,7 @@
 import messagesClient from '../../api/MessagesClient'
+import messagesDummy from '../../api/dummy/messages'
+import labelsDummy from '../../api/dummy/labels'
+
 // initial state
 const state = {
   messages: [],
@@ -9,41 +12,17 @@ const state = {
 // getters
 const getters = {
   getAllMessages: state => state.messages,
+  getAllSelected: state => state.allSelected,
+  getLabels: state => state.labels,
   getMessage: (state) => (id) => {
     return state.messages.find(message => message.Id === id)
   },
-  getAllSelected: state => state.allSelected,
   getLabel: (state) => (id) => {
     return state.labels.find(label => label.Id === id)
-  },
-  getLabels: state => state.labels
-}
-
-// actions
-const actions = {
-  async getAllMessages ({ commit }) {
-    let messages = await messagesClient.getMessages()
-    messages.forEach(message => { message.selected = false }) // Add custom property for our app
-    commit('setMessages', { messages })
-  },
-  async getMessage ({ commit }, { id }) {
-    let message = await messagesClient.getMessage(id)
-    message.selected = false
-    commit('setCurrentMessage', { message })
-  },
-  async getLabels ({ commit }) {
-    let labels = await messagesClient.getLabels()
-    commit('setLabels', { labels })
-  },
-  selectUnselectAll ({ commit, state }, { value }) {
-    state.messages.forEach(message => {
-      commit('setSelectedUnselected', { message: message, value: value })
-    })
-    commit('setAllSelected', { value: value })
   }
 }
 
-// mutations
+// mutations or setters
 const mutations = {
   setMessages (state, { messages }) {
     state.messages = messages
@@ -69,6 +48,30 @@ const mutations = {
   },
   removeLastMessage (state) {
     state.messages.pop()
+  }
+}
+
+// actions
+const actions = {
+  async getAllMessages ({ commit }) {
+    let messages = messagesDummy // await messagesClient.getMessages()
+    messages.forEach(message => { message.selected = false }) // Add custom property for our app
+    commit('setMessages', { messages })
+  },
+  async getMessage ({ commit }, { id }) {
+    let message = await messagesClient.getMessage(id)
+    message.selected = false
+    commit('setCurrentMessage', { message })
+  },
+  async getLabels ({ commit }) {
+    let labels = labelsDummy // await messagesClient.getLabels()
+    commit('setLabels', { labels })
+  },
+  selectUnselectAll ({ commit, state }, { value }) {
+    state.messages.forEach(message => {
+      commit('setSelectedUnselected', { message: message, value: value })
+    })
+    commit('setAllSelected', { value: value })
   }
 }
 

@@ -6,7 +6,7 @@
     <v-layout row>
       <v-flex xs12 sm12 md12>
         <v-card>
-          <v-list one-line>
+          <v-list>
             <v-list-tile>
               <v-list-tile-content>
                 <v-list-tile-title>{{ message.Subject }}</v-list-tile-title>
@@ -15,8 +15,10 @@
             </v-list-tile>
           </v-list>
         </v-card>
-        <labels-component :messageLabels="message.LabelList" :message="message"></labels-component>
-        <div v-html="message.Body"></div>
+        <labels-component v-if="message.LabelList.length" :messageLabels="message.LabelList" :message="message"></labels-component>
+        <message-body-component :body="message.Body"></message-body-component>
+        <br>
+        <message-reply-component :body="message.Body"></message-reply-component>
       </v-flex>
     </v-layout>
   </v-container>
@@ -24,10 +26,12 @@
 
 <script>
 import LabelsComponent from './LabelsComponent'
+import MessageBodyComponent from './MessageBodyComponent'
+import MessageReplyComponent from './MessageReplyComponent'
 
 export default {
   name: 'MessageViewComponent',
-  components: { LabelsComponent },
+  components: { LabelsComponent, MessageBodyComponent, MessageReplyComponent },
   computed: {
     message () {
       return this.$store.getters.getMessage(this.$route.params.id)

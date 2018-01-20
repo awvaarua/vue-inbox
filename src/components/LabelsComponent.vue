@@ -1,6 +1,12 @@
 <template>
   <div class="text-xs-left">
-    <v-chip v-if="getLabels" v-for="(label, idx) in messageLabels" :key="idx" close @input="remove(label)">{{ getLabelName(label) }}</v-chip>
+    <v-chip v-if="getLabels"
+            v-for="(label, idx) in messageLabels"
+            :key="idx"
+            @input="remove(label)"
+            close disabled>
+              {{ getLabelName(label) }}
+    </v-chip>
     <h4 v-else> No labels</h4>
   </div>
 </template>
