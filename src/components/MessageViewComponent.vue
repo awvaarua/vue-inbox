@@ -16,9 +16,10 @@
           </v-list>
         </v-card>
         <labels-component v-if="message.LabelList.length" :messageLabels="message.LabelList" :message="message"></labels-component>
-        <message-body-component :body="message.Body"></message-body-component>
         <br>
         <message-reply-component :body="message.Body"></message-reply-component>
+        <br>
+        <message-body-component :body="message.Body"></message-body-component>
       </v-flex>
     </v-layout>
   </v-container>
@@ -32,6 +33,11 @@ import MessageReplyComponent from './MessageReplyComponent'
 export default {
   name: 'MessageViewComponent',
   components: { LabelsComponent, MessageBodyComponent, MessageReplyComponent },
+  data () {
+    return {
+      reply: false
+    }
+  },
   computed: {
     message () {
       return this.$store.getters.getMessage(this.$route.params.id)

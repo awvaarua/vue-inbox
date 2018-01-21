@@ -4,10 +4,12 @@ import router from './router'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import store from './store/index.js'
+import Toasted from 'vue-toasted'
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
 Vue.use(Vuex)
+Vue.use(Toasted)
 
 Vue.config.productionTip = false
 

@@ -25,12 +25,12 @@ export default {
 
 /* 16x9 Aspect Ratio */
 .intrinsic-container-16x9 {
-  padding-bottom: 52%;
+  padding-bottom: 45%;
 }
 
 /* 4x3 Aspect Ratio */
 .intrinsic-container-4x3 {
-  padding-bottom: 50%;
+  padding-bottom: 42%;
 }
 
 .intrinsic-container iframe {
