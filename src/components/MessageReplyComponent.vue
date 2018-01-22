@@ -39,7 +39,8 @@ export default {
           success(`data:${blobInfo.blob().type};base64,${blobInfo.base64()}`)
         },
         content_style: 'body {  background: #ffffff !important; }',
-        height: '250px'
+        height: '250px',
+        branding: false
       }
     }
   },
