@@ -14,8 +14,12 @@
               </v-list-tile-content>
               <v-list-tile-action class="horizontalActions">
                 <v-icon medium class="clickable" color="green lighten-1" v-if="!message.AssignedName" @click="assignMessage()">assignment_ind</v-icon>
-                <v-icon medium class="clickable" color="red lighten-1" v-else @click="unassignMessage()">assignment_return</v-icon>
+                <v-icon medium class="clickable" color="blue lighten-1" v-if="message.AssignedName" @click="dialog = !dialog">book</v-icon>
+                <v-icon medium class="clickable" color="red lighten-1" v-if="message.AssignedName" @click="unassignMessage()">assignment_return</v-icon>
                 <v-icon medium class="clickable" color="red lighten-1" v-if="message.AssignedName" @click="()=>{}">delete</v-icon>
+                <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false" scrollable>
+                  <add-to-booking-component :close="() => { dialog = !dialog }"></add-to-booking-component>
+                </v-dialog>
               </v-list-tile-action>
             </v-list-tile>
           </v-list>
@@ -33,13 +37,15 @@
 import LabelsComponent from './LabelsComponent'
 import MessageBodyComponent from './MessageBodyComponent'
 import MessageReplyComponent from './MessageReplyComponent'
+import AddToBookingComponent from './AddToBookingComponent'
 
 export default {
   name: 'MessageViewComponent',
-  components: { LabelsComponent, MessageBodyComponent, MessageReplyComponent },
+  components: { LabelsComponent, MessageBodyComponent, MessageReplyComponent, AddToBookingComponent },
   data () {
     return {
-      showBody: true
+      showBody: true,
+      dialog: false
     }
   },
   computed: {
