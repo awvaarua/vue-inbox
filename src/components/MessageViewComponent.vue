@@ -12,6 +12,11 @@
                 <v-list-tile-title>{{ message.Subject }}</v-list-tile-title>
                 <v-list-tile-sub-title></v-list-tile-sub-title>
               </v-list-tile-content>
+              <v-list-tile-action class="horizontalActions">
+                <v-icon medium class="clickable" color="green lighten-1" v-if="!message.AssignedName" @click="()=>{}">assignment_ind</v-icon>
+                <v-icon medium class="clickable" color="red lighten-1" v-else @click="()=>{}">assignment_return</v-icon>
+                <v-icon medium class="clickable" color="red lighten-1" v-if="message.AssignedName" @click="()=>{}">delete</v-icon>
+              </v-list-tile-action>
             </v-list-tile>
           </v-list>
         </v-card>
@@ -51,5 +56,10 @@ export default {
 </script>
 
 <style scoped>
-
+.horizontalActions{
+  display: inline;
+}
+.clickable:hover {
+  cursor: pointer;
+}
 </style>

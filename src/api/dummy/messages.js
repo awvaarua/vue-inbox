@@ -7,7 +7,8 @@ const messageDummy = [{
     'CATEGORY_UPDATES',
     'INBOX'
   ],
-  'From': [{ 'Name':'Sebastia sanso', 'Mail': 'sanso.barcelo94@gmail.com'}],
+  'From': [{ 'Name':'Twitch Prime', 'Mail': 'sanso.barcelo94@gmail.com'}],
+  'AssignedName': 'Sebastià Sansó',
   'Subject': 'Next Step: Activate Your Account',
   'Snippet': 'Please add a payment method to activate your account There&#39;s no setup fee and you&#39;ll only be charged for the resources you use. Activate Your Account Happy Coding, Team DigitalOcean Refer a',
   'historyId': '1506151',
