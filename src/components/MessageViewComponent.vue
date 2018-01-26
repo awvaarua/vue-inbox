@@ -17,9 +17,8 @@
         </v-card>
         <labels-component v-if="message.LabelList.length" :messageLabels="message.LabelList" :message="message"></labels-component>
         <br>
-        <message-reply-component :body="message.Body"></message-reply-component>
-        <br>
-        <message-body-component :body="message.Body"></message-body-component>
+        <message-reply-component :body="message.Body" :showBody="(value) => {showBody = value}"></message-reply-component>
+        <message-body-component v-if="showBody" :body="message.Body"></message-body-component>
       </v-flex>
     </v-layout>
   </v-container>
@@ -35,7 +34,7 @@ export default {
   components: { LabelsComponent, MessageBodyComponent, MessageReplyComponent },
   data () {
     return {
-      reply: false
+      showBody: true
     }
   },
   computed: {

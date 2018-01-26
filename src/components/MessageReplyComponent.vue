@@ -48,12 +48,17 @@ export default {
     body: {
       type: String,
       required: true
+    },
+    showBody: {
+      type: Function,
+      required: true
     }
   },
   methods: {
     replyClick () {
       this.reply = !this.reply
       this.forward = false
+      this.showBody(!this.reply && !this.forward)
       if (this.reply) {
         this.bodyCopy = `
           <div>
@@ -71,6 +76,7 @@ export default {
     forwardClick () {
       this.forward = !this.forward
       this.reply = false
+      this.showBody(!this.reply && !this.forward)
       if (this.forward) {
         this.bodyCopy = `
           <div>
@@ -95,7 +101,7 @@ export default {
       setTimeout(() => {
         this[l] = false
         console.log('Entra')
-        this.$toasted.show('Mensaje enviado correctament').goAway(2000)
+        this.$toasted.show('Mensaje enviado correctament').goAway(1000)
       }, 3000)
       this.loader = null
     }

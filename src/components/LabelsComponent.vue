@@ -3,6 +3,7 @@
     <v-chip v-if="getLabels"
             v-for="(label, idx) in messageLabels"
             :key="idx"
+            color="primary" text-color="white"
             @input="remove(label)"
             close disabled>
               {{ getLabelName(label) }}
