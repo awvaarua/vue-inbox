@@ -48,6 +48,12 @@ const mutations = {
   },
   removeLastMessage (state) {
     state.messages.pop()
+  },
+  assignMessage (state, { message }) {
+    message.AssignedName = 'Sebastià Sansó'
+  },
+  unassignMessage (state, { message }) {
+    message.AssignedName = ''
   }
 }
 

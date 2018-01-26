@@ -13,8 +13,8 @@
                 <v-list-tile-sub-title></v-list-tile-sub-title>
               </v-list-tile-content>
               <v-list-tile-action class="horizontalActions">
-                <v-icon medium class="clickable" color="green lighten-1" v-if="!message.AssignedName" @click="()=>{}">assignment_ind</v-icon>
-                <v-icon medium class="clickable" color="red lighten-1" v-else @click="()=>{}">assignment_return</v-icon>
+                <v-icon medium class="clickable" color="green lighten-1" v-if="!message.AssignedName" @click="assignMessage()">assignment_ind</v-icon>
+                <v-icon medium class="clickable" color="red lighten-1" v-else @click="unassignMessage()">assignment_return</v-icon>
                 <v-icon medium class="clickable" color="red lighten-1" v-if="message.AssignedName" @click="()=>{}">delete</v-icon>
               </v-list-tile-action>
             </v-list-tile>
@@ -22,8 +22,8 @@
         </v-card>
         <labels-component v-if="message.LabelList.length" :messageLabels="message.LabelList" :message="message"></labels-component>
         <br>
-        <message-reply-component :body="message.Body" :showBody="(value) => {showBody = value}"></message-reply-component>
-        <message-body-component v-if="showBody" :body="message.Body"></message-body-component>
+        <message-reply-component v-if="message.AssignedName" :body="message.Body" :showBody="(value) => {showBody = value}"></message-reply-component>
+        <message-body-component v-if="showBody || (!message.AssignedName && !showBody)" :body="message.Body"></message-body-component>
       </v-flex>
     </v-layout>
   </v-container>
@@ -48,6 +48,14 @@ export default {
     }
   },
   methods: {
+    assignMessage () {
+      this.showBody = true
+      this.$store.commit('assignMessage', { message: this.message })
+    },
+    unassignMessage () {
+      this.showBody = true
+      this.$store.commit('unassignMessage', { message: this.message })
+    },
     isImportant () {
       return this.message.LabelList.indexOf('IMPORTANT') > -1
     }
