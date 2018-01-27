@@ -19,6 +19,9 @@ const getters = {
   },
   getLabel: (state) => (id) => {
     return state.labels.find(label => label.Id === id)
+  },
+  getLabelByName: (state) => (name) => {
+    return state.labels.find(label => label.Name === name)
   }
 }
 

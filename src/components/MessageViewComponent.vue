@@ -56,10 +56,16 @@ export default {
   methods: {
     assignMessage () {
       this.showBody = true
+      let label = this.$store.getters.getLabelByName('assigned')
+      if (!label) console.log('Have to create label')
+      else this.$store.commit('setLabel', { message: this.message, label: label.Id })
       this.$store.commit('assignMessage', { message: this.message })
     },
     unassignMessage () {
       this.showBody = true
+      let label = this.$store.getters.getLabelByName('assigned')
+      if (!label) console.log('Have to create label')
+      else this.$store.commit('unsetLabel', { message: this.message, label: label.Id })
       this.$store.commit('unassignMessage', { message: this.message })
     },
     isImportant () {

@@ -6,7 +6,7 @@
             color="primary" text-color="white"
             @input="remove(label)"
             close disabled>
-              {{ getLabelName(label) }}
+              {{ getLabelName(label) | capitalize }}
     </v-chip>
     <h4 v-else> No labels</h4>
   </div>
@@ -36,6 +36,13 @@ export default {
     },
     remove (id) {
       this.$store.commit('unsetLabel', { message: this.message, label: id })
+    }
+  },
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.toUpperCase()
     }
   }
 }

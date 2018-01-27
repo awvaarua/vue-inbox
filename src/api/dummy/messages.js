@@ -5,7 +5,8 @@ const messageDummy = [{
   'LabelList': [
     'IMPORTANT',
     'CATEGORY_UPDATES',
-    'INBOX'
+    'INBOX',
+    'Label_6'
   ],
   'From': [{ 'Name':'Twitch Prime', 'Mail': 'sanso.barcelo94@gmail.com'}],
   'AssignedName': 'Sebastià Sansó',
