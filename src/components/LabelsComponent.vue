@@ -5,7 +5,7 @@
             :key="idx"
             color="primary" text-color="white"
             @input="remove(label)"
-            close disabled>
+            :close="label !== getLabelIdByName('assigned')" disabled>
               {{ getLabelName(label) | capitalize }}
     </v-chip>
     <h4 v-else> No labels</h4>
@@ -33,6 +33,11 @@ export default {
   methods: {
     getLabelName (id) {
       return this.$store.getters.getLabel(id).Name
+    },
+    getLabelIdByName (name) {
+      const label = this.$store.getters.getLabelByName(name)
+      if (label) return label.Id
+      return label.Name
     },
     remove (id) {
       this.$store.commit('unsetLabel', { message: this.message, label: id })

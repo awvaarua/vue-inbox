@@ -4,7 +4,7 @@ const messageDummy = [{
   'ThreadId': '1611320d48217bfc',
   'LabelList': [
     'IMPORTANT',
-    'CATEGORY_UPDATES',
+    'CATEGORY_UPDATES', 
     'INBOX',
     'Label_6'
   ],
