@@ -97,10 +97,10 @@ export default {
   watch: {
     loader () {
       const l = this.loader
+      console.log(this[l])
       this[l] = !this[l]
       setTimeout(() => {
         this[l] = false
-        console.log('Entra')
         this.$toasted.show('Mensaje enviado correctament').goAway(1000)
       }, 3000)
       this.loader = null
